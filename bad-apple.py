@@ -54,12 +54,12 @@ try:
         root = tk.Tk()
 
         # =========================
-        # 基础窗口设置
+        # Ventana basica
         # =========================
         root.title("Ventana")
         root.configure(bg="black")
 
-        # 全屏 + 前台显示
+        # Toda la ventana grande
         root.state("zoomed")
         root.lift()
         root.attributes("-topmost", True)
@@ -67,7 +67,7 @@ try:
         root.focus_force()
 
         # =========================
-        # 显示区域
+        # Zona de contenido
         # =========================
         label = tk.Label(
             root,
@@ -81,7 +81,7 @@ try:
         label.pack(fill="both", expand=True)
 
         # =========================
-        # 加载提示（避免黑屏）
+        # Notificacion en cargar
         # =========================
         loading_label = tk.Label(
             root,
@@ -98,13 +98,13 @@ try:
         frame_index = 0
 
         # =========================
-        # 优化窗口缩放字体
+        # Simplificar la letra
         # =========================
         def resize_font(event=None):
             width = root.winfo_width()
             height = root.winfo_height()
 
-            # 动态字体大小
+            # tamaño
             font_size = max(
                 8,
                 min(
@@ -118,7 +118,7 @@ try:
         root.bind("<Configure>", resize_font)
 
         # =========================
-        # 阻止最小化
+        # Evitar que se parezca en modo pequeño
         # =========================
         def prevent_minimize(event=None):
             if root.state() == "iconic":
@@ -127,7 +127,7 @@ try:
         root.bind("<Unmap>", prevent_minimize)
 
         # =========================
-        # 实时放大当前帧
+        # maximizar
         # =========================
         scale_factor = max(1, frame_size_windows // frame_size)
 
@@ -140,16 +140,16 @@ try:
             )
 
         # =========================
-        # 强制窗口刷新
+        # actualizar obligatoriamente
         # =========================
         root.update_idletasks()
         root.update()
 
-        # 删除加载提示
+        # Eliminar la carga
         loading_label.destroy()
 
         # =========================
-        # 先显示第一帧（避免黑屏）
+        # demostrar el primer pixel
         # =========================
         if len(ASCII_LIST) > 0:
             first_frame = enlarge_frame(ASCII_LIST[0])
@@ -158,12 +158,12 @@ try:
         root.update()
 
         # =========================
-        # 播放音频
+        # Reproducir el audio
         # =========================
         play_audio("audio.mp3")
 
         # =========================
-        # 帧更新
+        # Actualizacion del pixel
         # =========================
         def update_frame():
             nonlocal frame_index
@@ -181,7 +181,7 @@ try:
                 frame_index += 1
 
                 # =========================
-                # 动态FPS同步
+                # FPS en modo igual
                 # =========================
                 elapsed = (time.time() - frame_start) * 1000
 
@@ -192,13 +192,8 @@ try:
             else:
                 root.destroy()
 
-        # 初始字体适配
         resize_font()
-
-        # 开始播放
         update_frame()
-
-        # 主循环
         root.mainloop()
 
         sys.exit()
