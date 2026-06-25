@@ -51,9 +51,6 @@ from PIL import Image
 import os
 import tkinter as tk
 
-# Desactivar el prompt de pygame antes de importarlo
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
-
 import pygame
 import fpstimer
 import moviepy.editor as mp
