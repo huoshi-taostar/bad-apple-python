@@ -100,7 +100,7 @@ video.mp4
 ```
 
 无需输入文件名。
-
+但是需要将视频文件名改成 video
 ---
 
 ## 3️⃣ Ejecutar en la Ventana
